@@ -1,0 +1,13 @@
+---
+- name: Populate service facts
+  ansible.builtin.service_facts:
+
+- name: Remove cloude-init
+  ansible.builtin.import_tasks: "cloud-init.yml"
+  vars:
+    server_services: "{{ ansible_facts }}"
+
+- name: Remove snapd
+  ansible.builtin.import_tasks: "snapd.yml"
+  vars:
+    server_services: "{{ ansible_facts }}"

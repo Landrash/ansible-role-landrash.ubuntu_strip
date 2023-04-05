@@ -1,0 +1,26 @@
+---
+snap_packages:
+  - lxd
+  - core20
+  - snapd
+
+snapd_services:
+  - snapd.service
+  - snapd.socket
+  - snapd.seeded.service
+  - snapd.apparmor.service
+  - snapd.autoimport.service
+  - snapd.core-fixup.service
+  - snapd.recovery-chooser-trigger.service
+  - snapd.seeded.service
+  - snapd.snap-repair.service
+  - snapd.snap-repair.timer
+  - snapd.system-shutdown.service
+  - snapd.failure.service
+  - snapd.aa-prompt-listener.service
+
+cloud_init_services:
+  - cloud-config.service
+  - cloud-final.service
+  - cloud-init-local.service
+  - cloud-init.service

@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  role_name: ubuntu_strip
+  namespace: landrash
+  author: landrash
+  description: Removes cloud init and snapd from a base ubuntu install
+  min_ansible_version: '7.0'
+  license: MIT
+  platforms:
+    - name: Ubuntu
+      versions:
+        - "jammy"
+#        - "kinetic"
+  galaxy_tags:
+    - ubuntu
+dependencies: []

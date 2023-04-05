@@ -1,0 +1,28 @@
+---
+- name: Remove snap packages
+  become: true
+  community.general.snap:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ snap_packages }}"
+  when:
+    - server_services.services["snapd.service"].state == 'running'
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_version >= "22.04"
+
+- name: Shutdown snapd services, sockets and timers
+  become: true
+  ansible.builtin.service:
+    name: "{{ service }}"
+    state: stopped
+    enabled: false
+  failed_when: false
+  loop:
+    "{{ snapd_services }}"
+  loop_control:
+    loop_var: service
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_version >= "22.04"
+    - server_services.services[service] is defined
+    - server_services.services[service].status == 'enabled'
